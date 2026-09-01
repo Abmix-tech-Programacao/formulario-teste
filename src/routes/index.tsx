@@ -332,14 +332,14 @@ interface FormFieldProps {
   label: string;
   icon: React.ElementType;
   placeholder: string;
-  type?: string;
+  type?: string | undefined;
   value: string;
   onChange: (value: string) => void;
   onBlur: () => void;
-  error?: string;
+  error?: string | undefined;
   isValid: boolean;
   isInvalid: boolean;
-  inputMode?: "text" | "numeric" | "tel" | "email";
+  inputMode?: "text" | "numeric" | "tel" | "email" | undefined;
 }
 
 function FormField({
