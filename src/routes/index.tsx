@@ -168,7 +168,7 @@ function Index() {
   };
 
   return (
-    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-form-bg px-4 py-12 font-sans">
+    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-form-bg px-4 py-4 sm:py-6 font-sans">
       {/* Decorative background elements */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -left-20 top-1/4 h-64 w-64 rounded-full bg-form-accent/10 blur-3xl" />
@@ -192,27 +192,27 @@ function Index() {
       </div>
 
       <div className="relative z-10 w-full max-w-xl">
-        <div className="rounded-[2rem] bg-form-card p-8 shadow-2xl shadow-black/10 sm:p-10">
+        <div className="rounded-2xl sm:rounded-[1.75rem] bg-form-card p-5 sm:p-7 shadow-2xl shadow-black/10">
           {showSuccess ? (
             <SuccessMessage onReset={handleReset} />
           ) : (
             <>
               {/* Header */}
-              <div className="mb-8 text-center">
-                <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-form-accent/10">
-                  <ClipboardList className="h-6 w-6 text-form-accent" strokeWidth={2} />
+              <div className="mb-5 text-center">
+                <div className="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-full bg-form-accent/10">
+                  <ClipboardList className="h-5 w-5 text-form-accent" strokeWidth={2} />
                 </div>
-                <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+                <h1 className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">
                   Só precisamos de{" "}
                   <span className="text-form-accent">alguns detalhes</span>
                 </h1>
-                <p className="mt-2 text-sm text-muted-foreground">
+                <p className="mt-1 text-xs sm:text-sm text-muted-foreground">
                   Preencha as informações abaixo para continuar.
                 </p>
               </div>
 
               {/* Form */}
-              <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+              <form onSubmit={handleSubmit} className="space-y-3.5" noValidate>
                 <FormField
                   id="fullName"
                   label="Nome completo"
@@ -226,7 +226,7 @@ function Index() {
                   isInvalid={isFieldInvalid("fullName")}
                 />
 
-                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
                   <FormField
                     id="age"
                     label="Idade"
@@ -284,12 +284,12 @@ function Index() {
                   isInvalid={isFieldInvalid("city")}
                 />
 
-                <div className="space-y-2">
-                  <Label htmlFor="notes" className="text-sm font-medium text-foreground">
+                <div className="space-y-1">
+                  <Label htmlFor="notes" className="text-xs sm:text-sm font-medium text-foreground">
                     Observações <span className="text-muted-foreground">(opcional)</span>
                   </Label>
                   <div className="relative">
-                    <MessageSquare className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
+                    <MessageSquare className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
                     <Textarea
                       id="notes"
                       value={formData.notes}
@@ -297,10 +297,10 @@ function Index() {
                       onBlur={() => handleBlur("notes")}
                       placeholder="Conte algo que considere importante..."
                       maxLength={300}
-                      className="min-h-[120px] resize-none rounded-xl border-input bg-transparent pl-10 pr-3 py-3 text-sm transition-all duration-200 focus-visible:border-form-accent focus-visible:ring-form-accent"
+                      className="h-[72px] min-h-[72px] resize-none rounded-lg border-input bg-transparent pl-9.5 pr-3 py-2 text-sm transition-all duration-200 focus-visible:border-form-accent focus-visible:ring-form-accent"
                     />
                   </div>
-                  <div className="flex justify-end">
+                  <div className="flex justify-end pt-0.5">
                     <span
                       className={`text-xs font-medium transition-colors ${
                         formData.notes.length >= 300 ? "text-form-accent" : "text-muted-foreground"
@@ -313,7 +313,7 @@ function Index() {
 
                 <Button
                   type="submit"
-                  className="mt-2 h-12 w-full rounded-xl bg-primary text-base font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all duration-200 hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/20 active:translate-y-0"
+                  className="mt-1.5 h-10 sm:h-11 w-full rounded-lg sm:rounded-xl bg-primary text-sm sm:text-base font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all duration-200 hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/20 active:translate-y-0"
                 >
                   Enviar cadastro
                   <span className="ml-1">→</span>
@@ -357,13 +357,13 @@ function FormField({
   inputMode = "text",
 }: FormFieldProps) {
   return (
-    <div className="space-y-2">
-      <Label htmlFor={id} className="text-sm font-medium text-foreground">
+    <div className="space-y-1">
+      <Label htmlFor={id} className="text-xs sm:text-sm font-medium text-foreground">
         {label}
       </Label>
       <div className="relative">
         <Icon
-          className={`absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 transition-colors duration-200 ${
+          className={`absolute left-3 top-1/2 h-4 w-4 sm:h-4.5 sm:w-4.5 -translate-y-1/2 transition-colors duration-200 ${
             isInvalid ? "text-destructive" : "text-muted-foreground"
           }`}
         />
@@ -377,7 +377,7 @@ function FormField({
           placeholder={placeholder}
           aria-invalid={isInvalid}
           aria-describedby={isInvalid ? `${id}-error` : undefined}
-          className={`h-12 rounded-xl border bg-transparent pl-10 pr-10 text-sm transition-all duration-200 focus-visible:ring-1 ${
+          className={`h-10 rounded-lg border bg-transparent pl-9.5 pr-9.5 text-sm transition-all duration-200 focus-visible:ring-1 ${
             isInvalid
               ? "border-destructive focus-visible:border-destructive focus-visible:ring-destructive"
               : "border-input focus-visible:border-form-accent focus-visible:ring-form-accent"
@@ -385,7 +385,7 @@ function FormField({
         />
         {isValid && (
           <div className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-form-accent/10 p-0.5">
-            <Check className="h-4 w-4 text-form-accent" strokeWidth={3} />
+            <Check className="h-3.5 w-3.5 text-form-accent" strokeWidth={3} />
           </div>
         )}
       </div>
